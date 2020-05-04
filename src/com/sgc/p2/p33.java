@@ -3,13 +3,15 @@ package com.sgc.p2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class p33 {
 
     public static void main(String[] args) {
-        String s = "aabbc";
+        String s = "aaabbbc";
         System.out.println(FirstNotRepeatingChar(s));
+        System.out.println(FirstNotRepeatingChar1(s));
     }
 
     public static int FirstNotRepeatingChar(String str) {
@@ -39,5 +41,20 @@ public class p33 {
             }
         }
         return 0;
+    }
+
+    public static int FirstNotRepeatingChar1(String str) {
+        if(str == null || str.length()==0) return -1;
+        List<Character> list = new ArrayList<>();
+        for(int i=0;i<str.length();i++){
+            char ch = str.charAt(i);
+            if(!list.contains(ch)){
+                list.add(Character.valueOf(ch));
+            }else{
+                list.remove(Character.valueOf(ch));
+            }
+        }
+        if(list.size() <=0) return -1;
+        return str.indexOf(list.get(0));
     }
 }
